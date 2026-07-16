@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f7ff;
+  --bg-tertiary: #f0eeff;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a6a;
+  --text-muted: #9090b0;
+  --border: #e2e0f0;
+  --accent: #6366f1;
+  --accent-light: #eef2ff;
+  --accent-hover: #4f46e5;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+  --shadow-md: 0 4px 16px rgba(99, 102, 241, 0.12);
+  --shadow-lg: 0 8px 32px rgba(99, 102, 241, 0.16);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0f0e1a;
+  --bg-secondary: #1a1830;
+  --bg-tertiary: #252340;
+  --bg-card: #1e1c32;
+  --text-primary: #e8e6ff;
+  --text-secondary: #b0aed0;
+  --text-muted: #6060a0;
+  --border: #2e2c4a;
+  --accent: #818cf8;
+  --accent-light: #1e1c3a;
+  --accent-hover: #a5b4fc;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="sepia"] {
+  --bg-primary: #fdf6e3;
+  --bg-secondary: #f5ead0;
+  --bg-tertiary: #ede0c0;
+  --bg-card: #fdf6e3;
+  --text-primary: #3d2b1f;
+  --text-secondary: #6b4c38;
+  --text-muted: #a0795e;
+  --border: #d8c8a8;
+  --accent: #c0782a;
+  --accent-light: #fdf0d8;
+  --accent-hover: #a0621e;
+  --shadow: 0 2px 8px rgba(100, 60, 20, 0.08);
+  --shadow-md: 0 4px 16px rgba(100, 60, 20, 0.12);
+  --shadow-lg: 0 8px 32px rgba(100, 60, 20, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', 'Noto Sans Devanagari', system-ui, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background 0.3s, color 0.3s;
+  height: 100%;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* Typography */
+.font-devanagari {
+  font-family: 'Noto Sans Devanagari', 'Mangal', system-ui, sans-serif;
+}
+.font-gujarati {
+  font-family: 'Noto Sans Gujarati', system-ui, sans-serif;
+}
+
+/* Editor styles */
+.editor-content {
+  font-family: 'Noto Sans Devanagari', Georgia, serif;
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--text-primary);
+  caret-color: var(--accent);
+  outline: none;
+  min-height: 400px;
+}
+
+.editor-content:focus {
+  outline: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.fade-in { animation: fadeIn 0.3s ease forwards; }
+.slide-in { animation: slideIn 0.3s ease forwards; }
+
+/* Card hover */
+.book-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+/* Focus ring */
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Prose reader */
+.reader-content {
+  font-family: 'Noto Sans Devanagari', Georgia, serif;
+  font-size: 1.15rem;
+  line-height: 2;
+  color: var(--text-primary);
+}
+
+.reader-content p {
+  margin: 1.2rem 0;
+  text-align: justify;
+}
+
+/* Toast */
+.toast-enter {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Toolbar */
+.toolbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.toolbar-btn:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+.toolbar-btn.active {
+  background: var(--accent-light);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Responsive sidebar */
+@media (max-width: 768px) {
+  .sidebar-mobile-hidden {
+    display: none;
+  }
+}
